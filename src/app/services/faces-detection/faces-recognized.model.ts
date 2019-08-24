@@ -6,7 +6,7 @@ export interface FacesRecognized {
   face_num: number;
 }
 
-interface Face {
+export interface Face {
   attributes: Attributes;
   face_rectangle: FaceRectangle;
   face_token: string;
