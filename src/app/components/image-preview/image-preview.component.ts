@@ -21,7 +21,6 @@ export class ImagePreviewComponent implements OnChanges {
   private setImageSrc(image: File): void {
     const reader = new FileReader();
     reader.onload = e => {
-      console.log(reader.result);
       this.imageSrc = reader.result;
     };
     reader.readAsDataURL(image);
