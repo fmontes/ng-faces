@@ -19,7 +19,7 @@ interface FaceRectangle {
   height: number;
 }
 
-interface Attributes {
+export interface Attributes {
   emotion: Emotion;
   gender: Gender;
   age: Age;

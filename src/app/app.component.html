@@ -7,7 +7,7 @@
 <div class="image__detection">
   <app-face-detected
     *ngFor="let face of faces"
-    [face]="face"
+    [info]="face.attributes"
     [ngStyle]="{
       'width.px': face.face_rectangle.width,
       'height.px': face.face_rectangle.height,

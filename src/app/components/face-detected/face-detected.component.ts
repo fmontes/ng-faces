@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Face } from 'src/app/services/faces-detection/faces-recognized.model';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Attributes } from 'src/app/services/faces-detection/faces-recognized.model';
 
 @Component({
   selector: 'app-face-detected',
@@ -7,11 +7,11 @@ import { Face } from 'src/app/services/faces-detection/faces-recognized.model';
   styleUrls: ['./face-detected.component.scss']
 })
 export class FaceDetectedComponent implements OnInit {
-  @Input() face: Face;
+  @HostBinding('class.found')
+  @Input()
+  info: Attributes;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

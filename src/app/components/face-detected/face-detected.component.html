@@ -1,4 +1,8 @@
-<section>
-  <p>Age: {{ face.attributes.age.value }}</p>
-  <p>Gender: {{ face.attributes.gender.value }}</p>
+<section *ngIf="info; else notFound">
+  <p>Age: {{ info.age.value }}</p>
+  <p>Gender: {{ info.gender.value }}</p>
 </section>
+
+<ng-template #notFound>
+  <span>Not Found</span>
+</ng-template>
