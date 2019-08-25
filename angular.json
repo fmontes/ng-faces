@@ -122,8 +122,15 @@
               "devServerTarget": "ng-faces:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "./"
+          }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ng-faces"
 }
