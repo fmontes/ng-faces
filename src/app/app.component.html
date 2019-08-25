@@ -4,5 +4,16 @@
 </header>
 
 <app-image-file-form (selected)="onImageSelected($event)"></app-image-file-form>
-<app-face-detected [face]="face"></app-face-detected>
-<app-image-preview [file]="selectedImage"></app-image-preview>
+<div class="image__detection">
+  <app-face-detected
+    *ngFor="let face of faces"
+    [face]="face"
+    [ngStyle]="{
+      'width.px': face.face_rectangle.width,
+      'height.px': face.face_rectangle.height,
+      'top.px': face.face_rectangle.top,
+      'left.px': face.face_rectangle.left
+    }"
+  ></app-face-detected>
+  <app-image-preview [file]="selectedImage"></app-image-preview>
+</div>

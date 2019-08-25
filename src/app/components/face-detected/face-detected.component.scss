@@ -1,0 +1,21 @@
+$color: #00d3ff;
+
+:host {
+  border: solid 2px $color;
+  display: block;
+}
+
+section {
+  background-color: $color;
+  bottom: -4rem;
+  padding: 0.5rem;
+  position: absolute;
+}
+
+p {
+  color: #fff;
+  line-height: 1.5rem;
+  margin: 0;
+  text-shadow: 1px 1px 1px #000;
+  white-space: nowrap;
+}
