@@ -6,7 +6,7 @@
 <app-image-file-form (selected)="selectedImage = $event"></app-image-file-form>
 <div class="image__detection">
   <app-face-detected
-    *ngFor="let face of faces"
+    *ngFor="let face of faces$ | async"
     [info]="face.attributes"
     [ngStyle]="{
       'width.px': face.face_rectangle.width,
