@@ -1,1 +1,1 @@
-<img *ngIf="imageSrc" [src]="imageSrc" alt="{{ (file && file.name) || '' }}" />
+<img *ngIf="imageSrc" [src]="imageSrc" alt="{{ (file && file.name) || '' }}" (load)="loaded.emit($event)" />

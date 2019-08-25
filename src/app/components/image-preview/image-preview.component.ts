@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-image-preview',
@@ -7,6 +7,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 })
 export class ImagePreviewComponent implements OnChanges {
   @Input() file: File;
+  @Output() loaded = new EventEmitter<Event>();
 
   imageSrc: string | ArrayBuffer;
 

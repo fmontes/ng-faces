@@ -2,6 +2,21 @@ import { Component } from '@angular/core';
 import { FacesDetectionService } from './services/faces-detection/faces-detection.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FacesRecognized, Face } from './services/faces-detection/faces-recognized.model';
+import { flatMap, map, toArray } from 'rxjs/operators';
+
+const updateFaceRectangle = (face: Face, ratio: number): Face => {
+  const { width, height, left, top } = face.face_rectangle;
+
+  return {
+    ...face,
+    face_rectangle: {
+      width: width * ratio,
+      height: height * ratio,
+      left: left * ratio,
+      top: top * ratio
+    }
+  };
+};
 
 @Component({
   selector: 'app-root',
@@ -14,16 +29,24 @@ export class AppComponent {
 
   constructor(private faceDetectionService: FacesDetectionService) {}
 
-  onImageSelected(image: File): void {
-    this.selectedImage = image;
+  onImageLoad(event: Event): void {
+    const image = event.target as HTMLImageElement;
+    const ratio = image.getBoundingClientRect().width / image.naturalWidth;
 
-    this.faceDetectionService.recognize(image).subscribe(
-      ({ faces }: FacesRecognized) => {
-        this.faces = faces;
-      },
-      (err: HttpErrorResponse) => {
-        console.log(err);
-      }
-    );
+    this.faceDetectionService
+      .recognize(this.selectedImage)
+      .pipe(
+        flatMap((facesRecognized: FacesRecognized) => facesRecognized.faces),
+        map((face: Face) => updateFaceRectangle(face, ratio)),
+        toArray()
+      )
+      .subscribe(
+        (faces: Face[]) => {
+          this.faces = faces;
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+        }
+      );
   }
 }

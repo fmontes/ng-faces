@@ -3,7 +3,7 @@
   <h3>Upload a photo to detect the faces in it</h3>
 </header>
 
-<app-image-file-form (selected)="onImageSelected($event)"></app-image-file-form>
+<app-image-file-form (selected)="selectedImage = $event"></app-image-file-form>
 <div class="image__detection">
   <app-face-detected
     *ngFor="let face of faces"
@@ -15,5 +15,5 @@
       'left.px': face.face_rectangle.left
     }"
   ></app-face-detected>
-  <app-image-preview [file]="selectedImage"></app-image-preview>
+  <app-image-preview [file]="selectedImage" (loaded)="onImageLoad($event)"></app-image-preview>
 </div>
